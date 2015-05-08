@@ -21,18 +21,16 @@ public class Etude7ColourofDay {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-     
-        
-        int doomDay = 3000;
+        int doomDay = 200;
         TreeMap<Integer, String> calender = new TreeMap<>();
 
         for (int i = 1; i < doomDay; i++) {
             if (isPrime(i)) {
-                if ("Monday".equals(isDay(i)) || "Thursday".equals(isDay(i))) {
+                if ("Monday".equals(isDay(i-1)) || "Thursday".equals(isDay(i-1))) {
                     calender.put(i, "Red");
-                } else if ("Tuesday".equals(isDay(i)) || "Friday".equals(isDay(i))) {
+                } else if ("Tuesday".equals(isDay(i-1)) || "Friday".equals(isDay(i-1))) {
                     calender.put(i, "Green");
-                } else if ("Wednesday".equals(isDay(i)) || "Saturday".equals(isDay(i))) {
+                } else if ("Wednesday".equals(isDay(i-1)) || "Saturday".equals(isDay(i-1))) {
                     calender.put(i, "Blue");
                 } else {
                     calender.put(7, "Gold");
@@ -42,7 +40,8 @@ public class Etude7ColourofDay {
                 calender.put(i, findColor(primeFactor(i)));
             }
         }
-        System.out.print(calender);
+        
+        System.out.println(calender);
     }
 
     /* Test if the date is a prime day */
@@ -66,18 +65,12 @@ public class Etude7ColourofDay {
             // if i is a factor of N, repeatedly divide it out
             while (n % i == 0) {
                 factors.add(i);
-                //System.out.print(i + " ");
                 n = n / i;
             }
-        }
+        }  
         // if biggest factor occurs only once, n > 1
         factors.add(1);
-       /* if (n > 1) {
-            // System.out.println(n);
-        } else {
-            //System.out.println();
-        }
-*/
+        
         TreeMap<Integer, Integer> factorCount = new TreeMap<>(); //fisrt Integer will be the factor, 2nd one will be the count value
         for (int j = 1; j < 8; j++) {
             factorCount.put(j, Collections.frequency(factors, j));
